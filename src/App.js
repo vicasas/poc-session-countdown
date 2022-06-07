@@ -1,24 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import Countdown from './components/Countdown';
 
 function App() {
+  const THREE_DAYS_IN_MS =  60 * 1000;
+  const NOW_IN_MS = new Date().getTime();
+
+  const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Countdown targetDate={dateTimeAfterThreeDays} />
   );
 }
 
