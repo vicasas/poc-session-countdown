@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 const AppContext = createContext(() => {
@@ -10,7 +10,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const AppProvider = ({ children }) => {
-  return <AppContext.Provider value='Hola Mundo'>{children}</AppContext.Provider>
+  const serverDate = new Date().getTime()
+  const targetDate = 1654633800000
+
+  const values = useMemo(() =>  ({ currentDate: serverDate, targetDate }), [serverDate, targetDate])
+
+  return <AppContext.Provider value={values}>{children}</AppContext.Provider>
 }
 
 AppProvider.propTypes = {
