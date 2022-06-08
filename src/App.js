@@ -4,9 +4,13 @@ import { useApp } from './providers/AppProvider';
 
 function App() {
   const store = useApp()
+  console.log(store)
 
   return (
-    <Countdown currentDate={store.currentDate} targetDate={store.targetDate} />
+    <div>
+      <div>21:23</div>
+      <Countdown targetDate={1654910468000} />
+    </div>
   );
 }
 

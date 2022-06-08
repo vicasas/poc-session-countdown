@@ -1,7 +1,7 @@
 import useCountdown from "../useCountdown"
 
-function Countdown({ currentDate, targetDate }) {
-  const [days, hours, minutes, seconds] = useCountdown(currentDate, targetDate)
+function Countdown({ targetDate }) {
+  const [days, hours, minutes, seconds] = useCountdown(targetDate)
 
   return (
     <div>
