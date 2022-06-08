@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div>
-      <div>21:23</div>
+      <div>ay diomio 🙄🙄🙄🙄🙄🙄</div>
       <Countdown targetDate={1654910468000} />
     </div>
   );
