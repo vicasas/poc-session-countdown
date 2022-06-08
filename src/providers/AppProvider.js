@@ -10,15 +10,15 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const AppProvider = ({ children }) => {
-  const [serverDate, setServerDate] = useState(new Date().getTime())
-  // const serverDate = new Date().getTime()
+  // const [serverDate, setServerDate] = useState(new Date().getTime())
+  const serverDate = new Date().getTime()
   const targetDate = 1654905455000
 
   const values = useMemo(() =>  ({ currentDate: serverDate, targetDate }), [serverDate, targetDate])
 
-  useEffect(() => {
-    setServerDate(new Date().getTime())
-  }, [])
+  // useEffect(() => {
+  //   setServerDate(new Date().getTime())
+  // }, [])
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>
 }
