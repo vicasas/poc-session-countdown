@@ -1,18 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useCountdown = (currentDate, targetDate) => {
   const difference = targetDate - currentDate;
   const [countDown, setCountDown] = useState(difference > 0 ? difference : 0);
-  const timerRef = useRef(null);
 
   useEffect(() => {
-    timerRef.current = setInterval(() => {
+    const interval = setInterval(() => {
       setCountDown(countDown - 1000);
     }, 1000);
 
     // TODO: Clean `setInterval` when countdown expired
 
-    return () => clearInterval(timerRef.current);
+    return () => clearInterval(interval);
   }, [countDown]);
 
   return getReturnValues(countDown);
