@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 
 const AppContext = createContext(() => {
@@ -10,10 +10,15 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const AppProvider = ({ children }) => {
-  const serverDate = new Date().getTime()
-  const targetDate = 1654905455000
+  const [currentDate, setCurrentDate] = useState()
+  const [targetDate, setTargetDate] = useState()
 
-  const values = useMemo(() =>  ({ currentDate: serverDate, targetDate }), [serverDate, targetDate])
+  const values = useMemo(() =>  ({ currentDate: currentDate, targetDate }), [serverDate, targetDate])
+
+  useEffect(() => {
+    setTargetDate(new Date().getTime())
+    setCurrentDate(1654905455000)
+  }, [])
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>
 }
