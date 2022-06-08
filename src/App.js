@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <div>ay diomio 🙄🙄🙄🙄🙄🙄</div>
-      <Countdown targetDate={1654910468000} />
+      <Countdown targetDate={1654910468000} serverDate={new Date().getTime()} />
     </div>
   );
 }
