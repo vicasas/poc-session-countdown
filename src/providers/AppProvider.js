@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const AppProvider = ({ children }) => {
   const serverDate = new Date().getTime()
-  const targetDate = 1654905455000
+  const targetDate = 1654633800000
 
   const values = useMemo(() =>  ({ currentDate: serverDate, targetDate }), [serverDate, targetDate])
 
