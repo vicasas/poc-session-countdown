@@ -13,7 +13,7 @@ const AppProvider = ({ children }) => {
   const [currentDate, setCurrentDate] = useState()
   const [targetDate, setTargetDate] = useState()
 
-  const values = useMemo(() =>  ({ currentDate: currentDate, targetDate }), [currentDate, targetDate])
+  const values = useMemo(() =>  ({ currentDate: currentDate, targetDate }), [serverDate, targetDate])
 
   useEffect(() => {
     setTargetDate(new Date().getTime())
