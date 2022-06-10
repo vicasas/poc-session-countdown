@@ -1,5 +1,8 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { createTab, removeTab } from '../utils/tabs'
+
+window.tabId =  createTab()
 
 const AppContext = createContext(() => {
   throw new Error('Forgot to wrap component in `AppProvider`')
@@ -10,6 +13,14 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const AppProvider = ({ children }) => {
+  useEffect(() => {
+    window.onbeforeunload = () => {
+      removeTab()
+    }
+
+    window.onfocus = () => {}
+  }, [])
+
   return <AppContext.Provider value='Hello'>{children}</AppContext.Provider>
 }
 

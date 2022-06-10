@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useInterval } from 'usehooks-ts'
+import { useEffect, useState } from 'react';
+// import { useInterval } from 'usehooks-ts'
 
 const useCountdown = (targetDate, options = {}) => {
   const { intervalTime = 1000, now = new Date().getTime() } = options;
@@ -7,33 +7,21 @@ const useCountdown = (targetDate, options = {}) => {
     () => targetDate - now
   );
 
-  useInterval(() => {
-    setTimeLeft((current) => {
-      // if (current <= 0) {
-      //   clearInterval(interval);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft((current) => {
+        if (current <= 0) {
+          clearInterval(interval);
 
-      //   return 0;
-      // }
+          return 0;
+        }
 
-      return current - intervalTime;
-    });
-  }, 1000)
+        return current - intervalTime;
+      });
+    }, intervalTime);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setTimeLeft((current) => {
-  //       if (current <= 0) {
-  //         clearInterval(interval);
-
-  //         return 0;
-  //       }
-
-  //       return current - intervalTime;
-  //     });
-  //   }, intervalTime);
-
-  //   return () => clearInterval(interval);
-  // }, [intervalTime]);
+    return () => clearInterval(interval);
+  }, [intervalTime]);
   // const difference = targetDate - new Date().getTime();
   // const countDownDate = new Date(targetDate).getTime();
   // const [countDown, setCountDown] = useState(difference > 0 ? difference : 0);
