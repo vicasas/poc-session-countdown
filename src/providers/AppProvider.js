@@ -1,8 +1,6 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { createTab, removeTab } from '../utils/tabs'
-
-window.tabId =  createTab()
+import useInterval from '../hooks/useInterval'
 
 const AppContext = createContext(() => {
   throw new Error('Forgot to wrap component in `AppProvider`')
@@ -13,15 +11,14 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const AppProvider = ({ children }) => {
-  useEffect(() => {
-    window.onbeforeunload = () => {
-      removeTab()
-    }
+  const [time, setTime] = useState(0)
 
-    window.onfocus = () => {}
-  }, [])
+  useInterval(() => {
+    console.log('tick')
+    setTime((current) => current + 1 )
+  }, [5000])
 
-  return <AppContext.Provider value='Hello'>{children}</AppContext.Provider>
+  return <AppContext.Provider value={time}>{children}</AppContext.Provider>
 }
 
 AppProvider.propTypes = {
